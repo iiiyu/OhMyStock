@@ -17,10 +17,11 @@ class SeriesController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Series(), function (Grid $grid) {
-            $grid->column('id')->sortable();
-            $grid->column('closed_at');
+        return Grid::make(new Series(['company']), function (Grid $grid) {
+            $grid->column('company.name');
+            $grid->column('company.symbol');
             $grid->column('interval');
+            $grid->column('closed_at')->sortable();
             $grid->column('open');
             $grid->column('high');
             $grid->column('low');
@@ -29,6 +30,7 @@ class SeriesController extends AdminController
             $grid->column('volume');
             $grid->column('dividend_amount');
             $grid->column('split_coefficient');
+
 
 
             $grid->filter(function (Grid\Filter $filter) {

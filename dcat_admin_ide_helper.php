@@ -21,12 +21,24 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection require
      * @property Grid\Column|Collection require_dev
      * @property Grid\Column|Collection id
+     * @property Grid\Column|Collection created_at
+     * @property Grid\Column|Collection updated_at
+     * @property Grid\Column|Collection company_id
+     * @property Grid\Column|Collection calculated_at
+     * @property Grid\Column|Collection last_price
+     * @property Grid\Column|Collection before_last_price
+     * @property Grid\Column|Collection one_day_change
+     * @property Grid\Column|Collection vti_one_day_rel
+     * @property Grid\Column|Collection vti_five_day_rel
+     * @property Grid\Column|Collection vti_one_month_rel
+     * @property Grid\Column|Collection price_divergence_cs
+     * @property Grid\Column|Collection price_divergence_sm
+     * @property Grid\Column|Collection price_divergence_ml
+     * @property Grid\Column|Collection last_tradvol
      * @property Grid\Column|Collection parent_id
      * @property Grid\Column|Collection order
      * @property Grid\Column|Collection icon
      * @property Grid\Column|Collection uri
-     * @property Grid\Column|Collection created_at
-     * @property Grid\Column|Collection updated_at
      * @property Grid\Column|Collection user_id
      * @property Grid\Column|Collection path
      * @property Grid\Column|Collection method
@@ -51,7 +63,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection failed_at
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
-     * @property Grid\Column|Collection company_id
      * @property Grid\Column|Collection closed_at
      * @property Grid\Column|Collection interval
      * @property Grid\Column|Collection open
@@ -74,12 +85,24 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection require(string $label = null)
      * @method Grid\Column|Collection require_dev(string $label = null)
      * @method Grid\Column|Collection id(string $label = null)
+     * @method Grid\Column|Collection created_at(string $label = null)
+     * @method Grid\Column|Collection updated_at(string $label = null)
+     * @method Grid\Column|Collection company_id(string $label = null)
+     * @method Grid\Column|Collection calculated_at(string $label = null)
+     * @method Grid\Column|Collection last_price(string $label = null)
+     * @method Grid\Column|Collection before_last_price(string $label = null)
+     * @method Grid\Column|Collection one_day_change(string $label = null)
+     * @method Grid\Column|Collection vti_one_day_rel(string $label = null)
+     * @method Grid\Column|Collection vti_five_day_rel(string $label = null)
+     * @method Grid\Column|Collection vti_one_month_rel(string $label = null)
+     * @method Grid\Column|Collection price_divergence_cs(string $label = null)
+     * @method Grid\Column|Collection price_divergence_sm(string $label = null)
+     * @method Grid\Column|Collection price_divergence_ml(string $label = null)
+     * @method Grid\Column|Collection last_tradvol(string $label = null)
      * @method Grid\Column|Collection parent_id(string $label = null)
      * @method Grid\Column|Collection order(string $label = null)
      * @method Grid\Column|Collection icon(string $label = null)
      * @method Grid\Column|Collection uri(string $label = null)
-     * @method Grid\Column|Collection created_at(string $label = null)
-     * @method Grid\Column|Collection updated_at(string $label = null)
      * @method Grid\Column|Collection user_id(string $label = null)
      * @method Grid\Column|Collection path(string $label = null)
      * @method Grid\Column|Collection method(string $label = null)
@@ -104,7 +127,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection failed_at(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
-     * @method Grid\Column|Collection company_id(string $label = null)
      * @method Grid\Column|Collection closed_at(string $label = null)
      * @method Grid\Column|Collection interval(string $label = null)
      * @method Grid\Column|Collection open(string $label = null)
@@ -132,12 +154,24 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection require
      * @property Show\Field|Collection require_dev
      * @property Show\Field|Collection id
+     * @property Show\Field|Collection created_at
+     * @property Show\Field|Collection updated_at
+     * @property Show\Field|Collection company_id
+     * @property Show\Field|Collection calculated_at
+     * @property Show\Field|Collection last_price
+     * @property Show\Field|Collection before_last_price
+     * @property Show\Field|Collection one_day_change
+     * @property Show\Field|Collection vti_one_day_rel
+     * @property Show\Field|Collection vti_five_day_rel
+     * @property Show\Field|Collection vti_one_month_rel
+     * @property Show\Field|Collection price_divergence_cs
+     * @property Show\Field|Collection price_divergence_sm
+     * @property Show\Field|Collection price_divergence_ml
+     * @property Show\Field|Collection last_tradvol
      * @property Show\Field|Collection parent_id
      * @property Show\Field|Collection order
      * @property Show\Field|Collection icon
      * @property Show\Field|Collection uri
-     * @property Show\Field|Collection created_at
-     * @property Show\Field|Collection updated_at
      * @property Show\Field|Collection user_id
      * @property Show\Field|Collection path
      * @property Show\Field|Collection method
@@ -162,7 +196,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection failed_at
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
-     * @property Show\Field|Collection company_id
      * @property Show\Field|Collection closed_at
      * @property Show\Field|Collection interval
      * @property Show\Field|Collection open
@@ -185,12 +218,24 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection require(string $label = null)
      * @method Show\Field|Collection require_dev(string $label = null)
      * @method Show\Field|Collection id(string $label = null)
+     * @method Show\Field|Collection created_at(string $label = null)
+     * @method Show\Field|Collection updated_at(string $label = null)
+     * @method Show\Field|Collection company_id(string $label = null)
+     * @method Show\Field|Collection calculated_at(string $label = null)
+     * @method Show\Field|Collection last_price(string $label = null)
+     * @method Show\Field|Collection before_last_price(string $label = null)
+     * @method Show\Field|Collection one_day_change(string $label = null)
+     * @method Show\Field|Collection vti_one_day_rel(string $label = null)
+     * @method Show\Field|Collection vti_five_day_rel(string $label = null)
+     * @method Show\Field|Collection vti_one_month_rel(string $label = null)
+     * @method Show\Field|Collection price_divergence_cs(string $label = null)
+     * @method Show\Field|Collection price_divergence_sm(string $label = null)
+     * @method Show\Field|Collection price_divergence_ml(string $label = null)
+     * @method Show\Field|Collection last_tradvol(string $label = null)
      * @method Show\Field|Collection parent_id(string $label = null)
      * @method Show\Field|Collection order(string $label = null)
      * @method Show\Field|Collection icon(string $label = null)
      * @method Show\Field|Collection uri(string $label = null)
-     * @method Show\Field|Collection created_at(string $label = null)
-     * @method Show\Field|Collection updated_at(string $label = null)
      * @method Show\Field|Collection user_id(string $label = null)
      * @method Show\Field|Collection path(string $label = null)
      * @method Show\Field|Collection method(string $label = null)
@@ -215,7 +260,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection failed_at(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
-     * @method Show\Field|Collection company_id(string $label = null)
      * @method Show\Field|Collection closed_at(string $label = null)
      * @method Show\Field|Collection interval(string $label = null)
      * @method Show\Field|Collection open(string $label = null)
