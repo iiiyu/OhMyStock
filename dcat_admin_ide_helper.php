@@ -21,13 +21,12 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection require
      * @property Grid\Column|Collection require_dev
      * @property Grid\Column|Collection id
-     * @property Grid\Column|Collection created_at
-     * @property Grid\Column|Collection updated_at
-     * @property Grid\Column|Collection symbol
      * @property Grid\Column|Collection parent_id
      * @property Grid\Column|Collection order
      * @property Grid\Column|Collection icon
      * @property Grid\Column|Collection uri
+     * @property Grid\Column|Collection created_at
+     * @property Grid\Column|Collection updated_at
      * @property Grid\Column|Collection user_id
      * @property Grid\Column|Collection path
      * @property Grid\Column|Collection method
@@ -43,6 +42,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection password
      * @property Grid\Column|Collection avatar
      * @property Grid\Column|Collection remember_token
+     * @property Grid\Column|Collection symbol
      * @property Grid\Column|Collection uuid
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
@@ -51,6 +51,17 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection failed_at
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
+     * @property Grid\Column|Collection company_id
+     * @property Grid\Column|Collection closed_at
+     * @property Grid\Column|Collection interval
+     * @property Grid\Column|Collection open
+     * @property Grid\Column|Collection high
+     * @property Grid\Column|Collection low
+     * @property Grid\Column|Collection close
+     * @property Grid\Column|Collection adjusted_close
+     * @property Grid\Column|Collection volume
+     * @property Grid\Column|Collection dividend_amount
+     * @property Grid\Column|Collection split_coefficient
      * @property Grid\Column|Collection email_verified_at
      *
      * @method Grid\Column|Collection name(string $label = null)
@@ -63,13 +74,12 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection require(string $label = null)
      * @method Grid\Column|Collection require_dev(string $label = null)
      * @method Grid\Column|Collection id(string $label = null)
-     * @method Grid\Column|Collection created_at(string $label = null)
-     * @method Grid\Column|Collection updated_at(string $label = null)
-     * @method Grid\Column|Collection symbol(string $label = null)
      * @method Grid\Column|Collection parent_id(string $label = null)
      * @method Grid\Column|Collection order(string $label = null)
      * @method Grid\Column|Collection icon(string $label = null)
      * @method Grid\Column|Collection uri(string $label = null)
+     * @method Grid\Column|Collection created_at(string $label = null)
+     * @method Grid\Column|Collection updated_at(string $label = null)
      * @method Grid\Column|Collection user_id(string $label = null)
      * @method Grid\Column|Collection path(string $label = null)
      * @method Grid\Column|Collection method(string $label = null)
@@ -85,6 +95,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection password(string $label = null)
      * @method Grid\Column|Collection avatar(string $label = null)
      * @method Grid\Column|Collection remember_token(string $label = null)
+     * @method Grid\Column|Collection symbol(string $label = null)
      * @method Grid\Column|Collection uuid(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
@@ -93,6 +104,17 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection failed_at(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
+     * @method Grid\Column|Collection company_id(string $label = null)
+     * @method Grid\Column|Collection closed_at(string $label = null)
+     * @method Grid\Column|Collection interval(string $label = null)
+     * @method Grid\Column|Collection open(string $label = null)
+     * @method Grid\Column|Collection high(string $label = null)
+     * @method Grid\Column|Collection low(string $label = null)
+     * @method Grid\Column|Collection close(string $label = null)
+     * @method Grid\Column|Collection adjusted_close(string $label = null)
+     * @method Grid\Column|Collection volume(string $label = null)
+     * @method Grid\Column|Collection dividend_amount(string $label = null)
+     * @method Grid\Column|Collection split_coefficient(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
      */
     class Grid {}
@@ -110,13 +132,12 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection require
      * @property Show\Field|Collection require_dev
      * @property Show\Field|Collection id
-     * @property Show\Field|Collection created_at
-     * @property Show\Field|Collection updated_at
-     * @property Show\Field|Collection symbol
      * @property Show\Field|Collection parent_id
      * @property Show\Field|Collection order
      * @property Show\Field|Collection icon
      * @property Show\Field|Collection uri
+     * @property Show\Field|Collection created_at
+     * @property Show\Field|Collection updated_at
      * @property Show\Field|Collection user_id
      * @property Show\Field|Collection path
      * @property Show\Field|Collection method
@@ -132,6 +153,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection password
      * @property Show\Field|Collection avatar
      * @property Show\Field|Collection remember_token
+     * @property Show\Field|Collection symbol
      * @property Show\Field|Collection uuid
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
@@ -140,6 +162,17 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection failed_at
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
+     * @property Show\Field|Collection company_id
+     * @property Show\Field|Collection closed_at
+     * @property Show\Field|Collection interval
+     * @property Show\Field|Collection open
+     * @property Show\Field|Collection high
+     * @property Show\Field|Collection low
+     * @property Show\Field|Collection close
+     * @property Show\Field|Collection adjusted_close
+     * @property Show\Field|Collection volume
+     * @property Show\Field|Collection dividend_amount
+     * @property Show\Field|Collection split_coefficient
      * @property Show\Field|Collection email_verified_at
      *
      * @method Show\Field|Collection name(string $label = null)
@@ -152,13 +185,12 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection require(string $label = null)
      * @method Show\Field|Collection require_dev(string $label = null)
      * @method Show\Field|Collection id(string $label = null)
-     * @method Show\Field|Collection created_at(string $label = null)
-     * @method Show\Field|Collection updated_at(string $label = null)
-     * @method Show\Field|Collection symbol(string $label = null)
      * @method Show\Field|Collection parent_id(string $label = null)
      * @method Show\Field|Collection order(string $label = null)
      * @method Show\Field|Collection icon(string $label = null)
      * @method Show\Field|Collection uri(string $label = null)
+     * @method Show\Field|Collection created_at(string $label = null)
+     * @method Show\Field|Collection updated_at(string $label = null)
      * @method Show\Field|Collection user_id(string $label = null)
      * @method Show\Field|Collection path(string $label = null)
      * @method Show\Field|Collection method(string $label = null)
@@ -174,6 +206,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection password(string $label = null)
      * @method Show\Field|Collection avatar(string $label = null)
      * @method Show\Field|Collection remember_token(string $label = null)
+     * @method Show\Field|Collection symbol(string $label = null)
      * @method Show\Field|Collection uuid(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
@@ -182,6 +215,17 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection failed_at(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
+     * @method Show\Field|Collection company_id(string $label = null)
+     * @method Show\Field|Collection closed_at(string $label = null)
+     * @method Show\Field|Collection interval(string $label = null)
+     * @method Show\Field|Collection open(string $label = null)
+     * @method Show\Field|Collection high(string $label = null)
+     * @method Show\Field|Collection low(string $label = null)
+     * @method Show\Field|Collection close(string $label = null)
+     * @method Show\Field|Collection adjusted_close(string $label = null)
+     * @method Show\Field|Collection volume(string $label = null)
+     * @method Show\Field|Collection dividend_amount(string $label = null)
+     * @method Show\Field|Collection split_coefficient(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
      */
     class Show {}
