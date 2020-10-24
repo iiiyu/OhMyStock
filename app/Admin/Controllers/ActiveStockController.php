@@ -18,20 +18,23 @@ class ActiveStockController extends AdminController
     protected function grid()
     {
         return Grid::make(new ActiveStock(['company']), function (Grid $grid) {
+            // data
+            $grid->model()->orderBy('one_day_change', 'desc');
+
             // 禁用不需要的东西
             $grid->disableCreateButton();
             $grid->disableRowSelector();
             $grid->disableActions();
-            $grid->model()->orderBy('one_day_change', 'desc');
             $grid->fixColumns(2, 0);
-            // $grid->column('company.name');
+            $grid->paginate(100);
+
+            // Column
             $grid->column('company.symbol')->label();
-            // $grid->column('before_last_price')->hide();
             $grid->column('last_price')->sortable()->if(function ($column) {
                 return $this->before_last_price <= $this->last_price;
             })
                 ->then(function (Grid\Column $column) {
-                    // $column->display($view)->copyable();
+
                     $column->label('green');
                 })
                 ->else(function (Grid\Column $column) {

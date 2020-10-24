@@ -16,7 +16,7 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('symbol')->unique()->comment('US Stock Symbol');
+            $table->string('symbol')->unique()->index()->comment('US Stock Symbol');
             $table->string('name')->nullable()->comment("Company's name");
         });
     }
