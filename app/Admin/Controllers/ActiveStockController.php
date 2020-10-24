@@ -18,10 +18,32 @@ class ActiveStockController extends AdminController
     protected function grid()
     {
         return Grid::make(new ActiveStock(['company']), function (Grid $grid) {
-            $grid->column('company.name');
-            $grid->column('company.symbol');
-            $grid->column('last_price')->sortable();
-            $grid->column('one_day_change')->sortable();
+            $grid->fixColumns(2, 0);
+            // $grid->column('company.name');
+            $grid->column('company.symbol')->label();
+            // $grid->column('before_last_price')->hide();
+            $grid->column('last_price')->sortable()->if(function ($column) {
+                return $this->before_last_price <= $this->last_price;
+            })
+                ->then(function (Grid\Column $column) {
+                    // $column->display($view)->copyable();
+                    $column->label('green');
+                })
+                ->else(function (Grid\Column $column) {
+                    $column->label('red');
+                });;
+            $grid->column('one_day_change')->sortable()->display(function ($one_day_change) {
+                return round($one_day_change, 4) * 100 . '%';
+            })->if(function ($column) {
+                return $this->before_last_price <= $this->last_price;
+            })
+                ->then(function (Grid\Column $column) {
+                    // $column->display($view)->copyable();
+                    $column->label('green');
+                })
+                ->else(function (Grid\Column $column) {
+                    $column->label('red');
+                });;;
             $grid->column('vti_one_day_rel')->sortable();
             $grid->column('vti_five_day_rel')->sortable();
             $grid->column('vti_one_month_rel')->sortable();
