@@ -11,7 +11,7 @@ return [
     | login page.
     |
     */
-    'name' => 'Dcat Admin',
+    'name' => 'OhMyStock',
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<img src="/vendors/dcat-admin/images/logo.png" width="35"> &nbsp;Dcat Admin',
+    'logo' => '<img src="/vendors/dcat-admin/images/logo.png" width="35"> &nbsp;OhMyStock',
 
     /*
     |--------------------------------------------------------------------------
@@ -331,7 +331,7 @@ return [
         // light, primary, dark
         'sidebar_style' => 'light',
 
-        'dark_mode_switch' => false,
+        'dark_mode_switch' => true,
 
         // bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark
         'navbar_color' => '',
@@ -373,7 +373,5 @@ return [
     | https://github.com/dcat-admin-extensions.
     |
     */
-    'extensions' => [
-
-    ],
+    'extensions' => [],
 ];
