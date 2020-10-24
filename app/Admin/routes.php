@@ -12,6 +12,9 @@ Route::group([
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
 
-    $router->get('/', 'HomeController@index');
+    $router->resource('/', 'ActiveStockController');
 
+    $router->resource('companies', 'CompanyController');
+    $router->resource('series', 'SeriesController');
+    $router->resource('active-stocks', 'ActiveStockController');
 });
