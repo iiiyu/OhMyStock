@@ -17,26 +17,21 @@ class ActiveStockController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new ActiveStock(), function (Grid $grid) {
-            $grid->column('id')->sortable();
-            $grid->column('company_id');
-            $grid->column('calculated_at');
-            $grid->column('last_price');
-            $grid->column('before_last_price');
-            $grid->column('one_day_change');
-            $grid->column('vti_one_day_rel');
-            $grid->column('vti_five_day_rel');
-            $grid->column('vti_one_month_rel');
-            $grid->column('price_divergence_cs');
-            $grid->column('price_divergence_sm');
-            $grid->column('price_divergence_ml');
-            $grid->column('last_tradvol');
-            $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
-        
+        return Grid::make(new ActiveStock(['company']), function (Grid $grid) {
+            $grid->column('company.name');
+            $grid->column('company.symbol');
+            $grid->column('last_price')->sortable();
+            $grid->column('one_day_change')->sortable();
+            $grid->column('vti_one_day_rel')->sortable();
+            $grid->column('vti_five_day_rel')->sortable();
+            $grid->column('vti_one_month_rel')->sortable();
+            $grid->column('price_divergence_cs')->sortable();
+            $grid->column('price_divergence_sm')->sortable();
+            $grid->column('price_divergence_ml')->sortable();
+            $grid->column('last_tradvol')->sortable();
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
             });
         });
     }
@@ -90,7 +85,7 @@ class ActiveStockController extends AdminController
             $form->text('price_divergence_sm');
             $form->text('price_divergence_ml');
             $form->text('last_tradvol');
-        
+
             $form->display('created_at');
             $form->display('updated_at');
         });
