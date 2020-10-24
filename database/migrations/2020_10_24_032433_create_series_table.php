@@ -17,7 +17,7 @@ class CreateSeriesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('company_id');
-            $table->date('closed_at')->comment('收盘时间');
+            $table->date('closed_at')->index()->comment('收盘时间');
             $table->enum('interval', ['Daily', 'Weekly', 'Monthly'])->comment('记录时间颗粒度');
             $table->decimal('open', 11, 4)->comment('开盘价格');
             $table->decimal('high', 11, 4)->comment('最贵价格');
@@ -28,6 +28,7 @@ class CreateSeriesTable extends Migration
             $table->decimal('dividend_amount', 11, 4)->comment('股息');
             $table->decimal('split_coefficient', 8, 2)->comment('拆股');
             $table->foreign('company_id')->references('id')->on('companies');
+            $table->unique(['company_id', 'closed_at', 'interval']);
         });
     }
 

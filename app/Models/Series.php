@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Series extends Model
 {
-	use HasDateTimeFormatter;    }
+    use HasDateTimeFormatter;
+
+
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company');
+    }
+}

@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasDateTimeFormatter;
+
+    public function series()
+    {
+        return $this->hasMany('App\Models\Series');
+    }
 }
