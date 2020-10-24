@@ -53,6 +53,10 @@ class UpdateActiveStocks extends Command
 
         // 2.1 VTI
 
+        if (Series::where('company_id', $company->id)->count() < 300) {
+            return 0;
+        }
+
         $series = Series::where('company_id', $company->id)->orderBy('closed_at', 'desc')->limit(20)->get();
         $last_price = doubleval($series[0]['close']);
         $before_last_price = $series[1]['close'];

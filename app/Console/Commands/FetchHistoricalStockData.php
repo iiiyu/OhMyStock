@@ -60,7 +60,8 @@ class FetchHistoricalStockData extends Command
         $tmpArray = json_decode($response->body(), true);
 
         if (!array_key_exists('Meta Data', $tmpArray)) {
-            echo $tmpArray['Error Message'];
+            $this->info('Error Message');
+            dd($tmpArray);
             return 0;
         }
 
