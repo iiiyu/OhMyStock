@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Dcat\Admin\Models\Administrator as AdministratorModel;
 use Dcat\Admin\Models\Repositories\Administrator;
+use Dcat\Admin\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -46,11 +47,16 @@ class RegisterController extends Controller
 
         try {
             DB::beginTransaction();
-            AdministratorModel::create([
+            $user = AdministratorModel::create([
                 'username'   => $credentials['username'],
                 'password'   => bcrypt($credentials['password']),
                 'name'       => $credentials['username'],
             ]);
+
+            $role = Role::where('slug', 'member')->first();
+            if (!is_null($role)) {
+                $user->roles()->save($role);
+            }
             DB::commit();
             return $this->sendRegisterResponse($request);
         } catch (\Exception $exception) {
