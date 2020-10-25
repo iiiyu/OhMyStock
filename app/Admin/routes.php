@@ -16,7 +16,7 @@ Route::group([
     $router->get('register',  [RegisterController::class, 'show'])->name('register');
     $router->post('register',  [RegisterController::class, 'register'])->name('post-register');
 
-    $router->resource('/', 'ActiveStockController');
+    $router->get('/', 'HomeController@show');
 
     $router->resource('companies', 'CompanyController');
     $router->resource('series', 'SeriesController');
