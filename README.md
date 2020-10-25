@@ -9,6 +9,7 @@ Smile every day.
 ``` shell
 php artisan db:seed --class=RoleSeeder
 php artisan db:seed --class=PermissionSeeder
+php artisan db:seed --class=MenuSeeder
 
 php artisan db:seed --class=CompanySeeder
 ```
