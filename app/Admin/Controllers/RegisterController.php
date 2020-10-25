@@ -98,7 +98,7 @@ class RegisterController extends Controller
 
         return $this->redirectToIntended(
             $this->redirectPath(),
-            trans('admin.login_successful')
+            trans('login.register_successful')
         );
     }
 }
