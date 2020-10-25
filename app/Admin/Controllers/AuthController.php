@@ -6,4 +6,6 @@ use Dcat\Admin\Controllers\AuthController as BaseAuthController;
 
 class AuthController extends BaseAuthController
 {
+    // 自定义登陆view模板
+    protected $view = 'admin.pages.login';
 }

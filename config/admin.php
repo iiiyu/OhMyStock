@@ -145,6 +145,7 @@ return [
         'except' => [
             'auth/login',
             'auth/logout',
+            'register'
         ],
 
     ],

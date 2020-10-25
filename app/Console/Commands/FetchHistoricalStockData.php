@@ -48,19 +48,22 @@ class FetchHistoricalStockData extends Command
         // 1. 查询是否在数据库里面
         $company = Company::where('symbol', $symbol)->firstOrFail();
 
+        $apikey = env('ALPHAVANTAGE_API_KEY');
+
         // 2. 调用API获取数据
 
         $response = Http::get('https://www.alphavantage.co/query', [
             'function' => 'TIME_SERIES_DAILY_ADJUSTED',
             'symbol' => $symbol,
             'outputsize' => 'full',
-            'apikey' => 'GJUDYKDQKC0OFP5P',
+            'apikey' => $apikey,
         ]);
 
         $tmpArray = json_decode($response->body(), true);
 
         if (!array_key_exists('Meta Data', $tmpArray)) {
-            echo $tmpArray['Error Message'];
+            $this->error('Error Message');
+            dd($tmpArray);
             return 0;
         }
 
