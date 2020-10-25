@@ -21,7 +21,7 @@
 
 ## Demo
 
-[Demo 地址](https://stock.ohmyapps.com)
+[Demo 地址](https://stock.ohmyapps.com/admin)
 
 有兴趣的随便看看
 
