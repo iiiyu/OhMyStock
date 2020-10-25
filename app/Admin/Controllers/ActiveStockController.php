@@ -51,14 +51,105 @@ class ActiveStockController extends AdminController
                 })
                 ->else(function (Grid\Column $column) {
                     $column->label('red');
-                });;;
-            $grid->column('vti_one_day_rel')->sortable();
-            $grid->column('vti_five_day_rel')->sortable();
-            $grid->column('vti_one_month_rel')->sortable();
-            $grid->column('price_divergence_cs')->sortable();
-            $grid->column('price_divergence_sm')->sortable();
-            $grid->column('price_divergence_ml')->sortable();
-            $grid->column('last_tradvol')->sortable();
+                });
+
+            $grid->column('vti_one_day_rel')
+                ->sortable()
+                ->if(function ($column) {
+                    return $column->getValue() >= 0;
+                })->then(function (Grid\Column $column) {
+                    $column->display(function ($vti_one_day_rel) {
+                        $vti_one_day_rel = round($vti_one_day_rel, 2);
+                        return "<span style='color:green'>$vti_one_day_rel</span>";
+                    });
+                })->else(function (Grid\Column $column) {
+                    $column->display(function ($vti_one_day_rel) {
+                        $vti_one_day_rel = round($vti_one_day_rel, 2);
+                        return "<span style='color:red'>$vti_one_day_rel</span>";
+                    });
+                });
+            $grid->column('vti_five_day_rel')->sortable()
+                ->if(function ($column) {
+                    return $column->getValue() >= 0;
+                })->then(function (Grid\Column $column) {
+                    $column->display(function ($vti_five_day_rel) {
+                        $vti_five_day_rel = round($vti_five_day_rel, 2);
+                        return "<span style='color:green'>$vti_five_day_rel</span>";
+                    });
+                })->else(function (Grid\Column $column) {
+                    $column->display(function ($vti_five_day_rel) {
+                        $vti_five_day_rel = round($vti_five_day_rel, 2);
+                        return "<span style='color:red'>$vti_five_day_rel</span>";
+                    });
+                });
+            $grid->column('vti_one_month_rel')->sortable()
+                ->if(function ($column) {
+                    return $column->getValue() >= 0;
+                })->then(function (Grid\Column $column) {
+                    $column->display(function ($vti_one_month_rel) {
+                        $vti_one_month_rel = round($vti_one_month_rel, 2);
+                        return "<span style='color:green'>$vti_one_month_rel</span>";
+                    });
+                })->else(function (Grid\Column $column) {
+                    $column->display(function ($vti_one_month_rel) {
+                        $vti_one_month_rel = round($vti_one_month_rel, 2);
+                        return "<span style='color:red'>$vti_one_month_rel</span>";
+                    });
+                });
+            $grid->column('price_divergence_cs')->sortable()
+                ->if(function ($column) {
+                    return $column->getValue() >= 0;
+                })->then(function (Grid\Column $column) {
+                    $column->display(function ($price_divergence_cs) {
+                        $price_divergence_cs = round($price_divergence_cs, 2);
+                        return "<span style='color:green'>$price_divergence_cs</span>";
+                    });
+                })->else(function (Grid\Column $column) {
+                    $column->display(function ($price_divergence_cs) {
+                        $price_divergence_cs = round($price_divergence_cs, 2);
+                        return "<span style='color:red'>$price_divergence_cs</span>";
+                    });
+                });
+            $grid->column('price_divergence_sm')->sortable()
+                ->if(function ($column) {
+                    return $column->getValue() >= 0;
+                })->then(function (Grid\Column $column) {
+                    $column->display(function ($price_divergence_sm) {
+                        $price_divergence_sm = round($price_divergence_sm, 2);
+                        return "<span style='color:green'>$price_divergence_sm</span>";
+                    });
+                })->else(function (Grid\Column $column) {
+                    $column->display(function ($price_divergence_sm) {
+                        $price_divergence_sm = round($price_divergence_sm, 2);
+                        return "<span style='color:red'>$price_divergence_sm</span>";
+                    });
+                });
+            $grid->column('price_divergence_ml')->sortable()
+                ->if(function ($column) {
+                    return $column->getValue() >= 0;
+                })->then(function (Grid\Column $column) {
+                    $column->display(function ($price_divergence_ml) {
+                        $price_divergence_ml = round($price_divergence_ml, 2);
+                        return "<span style='color:green'>$price_divergence_ml</span>";
+                    });
+                })->else(function (Grid\Column $column) {
+                    $column->display(function ($price_divergence_ml) {
+                        $price_divergence_ml = round($price_divergence_ml, 2);
+                        return "<span style='color:red'>$price_divergence_ml</span>";
+                    });
+                });
+            $grid->column('last_tradvol')->sortable()
+                ->if(function ($column) {
+                    return $column->getValue() >= 0;
+                })->then(function (Grid\Column $column) {
+                    $column->display(function ($last_tradvol) {
+                        return "<span style='color:green'>$last_tradvol</span>";
+                    });
+                })->else(function (Grid\Column $column) {
+                    $column->display(function ($last_tradvol) {
+                        return "<span style='color:red'>$last_tradvol</span>";
+                    });
+                });
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
