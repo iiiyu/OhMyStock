@@ -58,7 +58,7 @@ class FetchHistoricalAllStockData extends Command
                     'symbol' => $company->symbol
                 ]);
                 $this->info(sprintf('Finish Calculator %s', $company->symbol));
-                sleep(10);
+                sleep(20);
             }
         });
 
