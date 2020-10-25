@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Dcat\Admin\Models\Permission;
 
-class PermissionReeder extends Seeder
+class PermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
