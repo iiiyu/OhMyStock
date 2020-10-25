@@ -33,4 +33,14 @@ class HomeController extends Controller
                 });
             });
     }
+
+
+    public function show(Content $content)
+    {
+        return $content
+            ->header('Dashboard')
+            ->description('coming soon...')
+            ->body(function (Row $row) {
+            });
+    }
 }
