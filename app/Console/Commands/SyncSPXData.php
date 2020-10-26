@@ -123,11 +123,9 @@ class SyncSPXData extends Command
 
         $data = $tmpArray['data'];
 
-        // 3. 写入数据库
-
+        // 2. 写入数据库
         $insertData = [];
         foreach ($data as $value) {
-
 
             $stock_market = explode(':', $value['s'])[0];
 
@@ -145,7 +143,6 @@ class SyncSPXData extends Command
 
         try {
             DB::beginTransaction();
-
             foreach ($chunks->toArray() as $chunk) {
                 Company::upsert(
                     $chunk,
@@ -153,7 +150,6 @@ class SyncSPXData extends Command
                     ['name', 'stock_market', 'logo_id', 'volume', 'market_cap_basic', 'price_earnings_ttm', 'earnings_per_share_basic_ttm', 'number_of_employees', 'sector', 'is_spx']
                 );
             }
-
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
