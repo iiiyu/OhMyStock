@@ -68,3 +68,5 @@ php artisan db:seed --class=CompanySeeder
 ```
 
 Smile every day.
+
+[注册TradingView](https://www.tradingview.com/gopro/?share_your_love=iiiyu)
