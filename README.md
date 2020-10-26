@@ -45,12 +45,14 @@
 
 ## TODO
 
+- [x] 基本搜索
 - [ ] 替换标普500的数据（目前数据随便找的，不准）
 - [ ] 基础数据能增量添加（目前只做了历史数据初始化）
-- [ ] 基本搜索
 - [ ] 基本Cache
 - [ ] 基本队列
 - [ ] 定时任务
+- [ ] 接入新数据源
+- [ ] 下一步产品设计
 
 ...
 
@@ -70,3 +72,5 @@ php artisan db:seed --class=CompanySeeder
 Smile every day.
 
 [注册TradingView](https://www.tradingview.com/gopro/?share_your_love=iiiyu)
+
+[注册iexcloud](https://iexcloud.io/s/8ec8e635)
