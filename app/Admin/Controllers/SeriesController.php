@@ -37,8 +37,6 @@ class SeriesController extends AdminController
             $grid->column('dividend_amount');
             $grid->column('split_coefficient');
 
-
-
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
             });
