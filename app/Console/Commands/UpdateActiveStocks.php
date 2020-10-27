@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use App\Models\Company;
-use App\Models\Series;
+use App\Models\HistoricalPrice;
 use App\Models\ActiveStock;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
@@ -53,11 +53,11 @@ class UpdateActiveStocks extends Command
 
         // 2.1 VTI
 
-        if (Series::where('company_id', $company->id)->count() < 300) {
+        if (HistoricalPrice::where('company_id', $company->id)->count() < 300) {
             return 0;
         }
 
-        $series = Series::where('company_id', $company->id)->orderBy('closed_at', 'desc')->limit(20)->get();
+        $series = HistoricalPrice::where('company_id', $company->id)->orderBy('closed_at', 'desc')->limit(20)->get();
         $last_price = doubleval($series[0]['close']);
         $before_last_price = $series[1]['close'];
         $before_five_day_price = $series[4]['close'];
@@ -70,7 +70,7 @@ class UpdateActiveStocks extends Command
 
 
         // VTI
-        $vti_series = Series::whereHas('company', function (Builder $query) {
+        $vti_series = HistoricalPrice::whereHas('company', function (Builder $query) {
             $query->where('symbol', 'VTI');
         })->orderBy('closed_at', 'desc')->limit(20)->get();
         $vti_last_price = $vti_series[0]['close'];
@@ -88,7 +88,7 @@ class UpdateActiveStocks extends Command
 
         // 2.2 EMA
         // $ema20
-        $series20 = Series::query()->select('close')->where('company_id', $company->id)->orderBy('closed_at', 'desc')->limit(120)->get();
+        $series20 = HistoricalPrice::query()->select('close')->where('company_id', $company->id)->orderBy('closed_at', 'desc')->limit(120)->get();
         $flattened20 = array_reverse(Arr::flatten($series20->toArray()));
         $ema20 = trader_ema($flattened20, 20);
         $ema20 = end($ema20);
@@ -96,7 +96,7 @@ class UpdateActiveStocks extends Command
 
 
         // $ema60
-        $series60 = Series::query()->select('close')->where('company_id', $company->id)->orderBy('closed_at', 'desc')->limit(180)->get();
+        $series60 = HistoricalPrice::query()->select('close')->where('company_id', $company->id)->orderBy('closed_at', 'desc')->limit(180)->get();
 
         $flattened60 = array_reverse(Arr::flatten($series60->toArray()));
         $ema60 = trader_ema($flattened60, 60);
@@ -104,7 +104,7 @@ class UpdateActiveStocks extends Command
 
 
         // $ema120
-        $series120 = Series::query()->select('close')->where('company_id', $company->id)->orderBy('closed_at', 'desc')->limit(300)->get();
+        $series120 = HistoricalPrice::query()->select('close')->where('company_id', $company->id)->orderBy('closed_at', 'desc')->limit(300)->get();
         $flattened120 = array_reverse(Arr::flatten($series120->toArray()));
         $ema120 = trader_ema($flattened120, 120);
         $ema120 = end($ema120);

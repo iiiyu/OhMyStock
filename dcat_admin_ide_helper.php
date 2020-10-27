@@ -55,22 +55,38 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection avatar
      * @property Grid\Column|Collection remember_token
      * @property Grid\Column|Collection symbol
+     * @property Grid\Column|Collection stock_market
+     * @property Grid\Column|Collection logo_id
+     * @property Grid\Column|Collection volume
+     * @property Grid\Column|Collection market_cap_basic
+     * @property Grid\Column|Collection price_earnings_ttm
+     * @property Grid\Column|Collection earnings_per_share_basic_ttm
+     * @property Grid\Column|Collection number_of_employees
+     * @property Grid\Column|Collection sector
+     * @property Grid\Column|Collection is_spx
      * @property Grid\Column|Collection uuid
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
-     * @property Grid\Column|Collection email
-     * @property Grid\Column|Collection token
      * @property Grid\Column|Collection closed_at
-     * @property Grid\Column|Collection interval
      * @property Grid\Column|Collection open
      * @property Grid\Column|Collection high
      * @property Grid\Column|Collection low
      * @property Grid\Column|Collection close
+     * @property Grid\Column|Collection u_open
+     * @property Grid\Column|Collection u_high
+     * @property Grid\Column|Collection u_low
+     * @property Grid\Column|Collection u_close
+     * @property Grid\Column|Collection u_volume
+     * @property Grid\Column|Collection change_over_time
+     * @property Grid\Column|Collection change
+     * @property Grid\Column|Collection change_percent
+     * @property Grid\Column|Collection email
+     * @property Grid\Column|Collection token
+     * @property Grid\Column|Collection interval
      * @property Grid\Column|Collection adjusted_close
-     * @property Grid\Column|Collection volume
      * @property Grid\Column|Collection dividend_amount
      * @property Grid\Column|Collection split_coefficient
      * @property Grid\Column|Collection email_verified_at
@@ -119,22 +135,38 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection avatar(string $label = null)
      * @method Grid\Column|Collection remember_token(string $label = null)
      * @method Grid\Column|Collection symbol(string $label = null)
+     * @method Grid\Column|Collection stock_market(string $label = null)
+     * @method Grid\Column|Collection logo_id(string $label = null)
+     * @method Grid\Column|Collection volume(string $label = null)
+     * @method Grid\Column|Collection market_cap_basic(string $label = null)
+     * @method Grid\Column|Collection price_earnings_ttm(string $label = null)
+     * @method Grid\Column|Collection earnings_per_share_basic_ttm(string $label = null)
+     * @method Grid\Column|Collection number_of_employees(string $label = null)
+     * @method Grid\Column|Collection sector(string $label = null)
+     * @method Grid\Column|Collection is_spx(string $label = null)
      * @method Grid\Column|Collection uuid(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
-     * @method Grid\Column|Collection email(string $label = null)
-     * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection closed_at(string $label = null)
-     * @method Grid\Column|Collection interval(string $label = null)
      * @method Grid\Column|Collection open(string $label = null)
      * @method Grid\Column|Collection high(string $label = null)
      * @method Grid\Column|Collection low(string $label = null)
      * @method Grid\Column|Collection close(string $label = null)
+     * @method Grid\Column|Collection u_open(string $label = null)
+     * @method Grid\Column|Collection u_high(string $label = null)
+     * @method Grid\Column|Collection u_low(string $label = null)
+     * @method Grid\Column|Collection u_close(string $label = null)
+     * @method Grid\Column|Collection u_volume(string $label = null)
+     * @method Grid\Column|Collection change_over_time(string $label = null)
+     * @method Grid\Column|Collection change(string $label = null)
+     * @method Grid\Column|Collection change_percent(string $label = null)
+     * @method Grid\Column|Collection email(string $label = null)
+     * @method Grid\Column|Collection token(string $label = null)
+     * @method Grid\Column|Collection interval(string $label = null)
      * @method Grid\Column|Collection adjusted_close(string $label = null)
-     * @method Grid\Column|Collection volume(string $label = null)
      * @method Grid\Column|Collection dividend_amount(string $label = null)
      * @method Grid\Column|Collection split_coefficient(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
@@ -188,22 +220,38 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection avatar
      * @property Show\Field|Collection remember_token
      * @property Show\Field|Collection symbol
+     * @property Show\Field|Collection stock_market
+     * @property Show\Field|Collection logo_id
+     * @property Show\Field|Collection volume
+     * @property Show\Field|Collection market_cap_basic
+     * @property Show\Field|Collection price_earnings_ttm
+     * @property Show\Field|Collection earnings_per_share_basic_ttm
+     * @property Show\Field|Collection number_of_employees
+     * @property Show\Field|Collection sector
+     * @property Show\Field|Collection is_spx
      * @property Show\Field|Collection uuid
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
-     * @property Show\Field|Collection email
-     * @property Show\Field|Collection token
      * @property Show\Field|Collection closed_at
-     * @property Show\Field|Collection interval
      * @property Show\Field|Collection open
      * @property Show\Field|Collection high
      * @property Show\Field|Collection low
      * @property Show\Field|Collection close
+     * @property Show\Field|Collection u_open
+     * @property Show\Field|Collection u_high
+     * @property Show\Field|Collection u_low
+     * @property Show\Field|Collection u_close
+     * @property Show\Field|Collection u_volume
+     * @property Show\Field|Collection change_over_time
+     * @property Show\Field|Collection change
+     * @property Show\Field|Collection change_percent
+     * @property Show\Field|Collection email
+     * @property Show\Field|Collection token
+     * @property Show\Field|Collection interval
      * @property Show\Field|Collection adjusted_close
-     * @property Show\Field|Collection volume
      * @property Show\Field|Collection dividend_amount
      * @property Show\Field|Collection split_coefficient
      * @property Show\Field|Collection email_verified_at
@@ -252,22 +300,38 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection avatar(string $label = null)
      * @method Show\Field|Collection remember_token(string $label = null)
      * @method Show\Field|Collection symbol(string $label = null)
+     * @method Show\Field|Collection stock_market(string $label = null)
+     * @method Show\Field|Collection logo_id(string $label = null)
+     * @method Show\Field|Collection volume(string $label = null)
+     * @method Show\Field|Collection market_cap_basic(string $label = null)
+     * @method Show\Field|Collection price_earnings_ttm(string $label = null)
+     * @method Show\Field|Collection earnings_per_share_basic_ttm(string $label = null)
+     * @method Show\Field|Collection number_of_employees(string $label = null)
+     * @method Show\Field|Collection sector(string $label = null)
+     * @method Show\Field|Collection is_spx(string $label = null)
      * @method Show\Field|Collection uuid(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
-     * @method Show\Field|Collection email(string $label = null)
-     * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection closed_at(string $label = null)
-     * @method Show\Field|Collection interval(string $label = null)
      * @method Show\Field|Collection open(string $label = null)
      * @method Show\Field|Collection high(string $label = null)
      * @method Show\Field|Collection low(string $label = null)
      * @method Show\Field|Collection close(string $label = null)
+     * @method Show\Field|Collection u_open(string $label = null)
+     * @method Show\Field|Collection u_high(string $label = null)
+     * @method Show\Field|Collection u_low(string $label = null)
+     * @method Show\Field|Collection u_close(string $label = null)
+     * @method Show\Field|Collection u_volume(string $label = null)
+     * @method Show\Field|Collection change_over_time(string $label = null)
+     * @method Show\Field|Collection change(string $label = null)
+     * @method Show\Field|Collection change_percent(string $label = null)
+     * @method Show\Field|Collection email(string $label = null)
+     * @method Show\Field|Collection token(string $label = null)
+     * @method Show\Field|Collection interval(string $label = null)
      * @method Show\Field|Collection adjusted_close(string $label = null)
-     * @method Show\Field|Collection volume(string $label = null)
      * @method Show\Field|Collection dividend_amount(string $label = null)
      * @method Show\Field|Collection split_coefficient(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
