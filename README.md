@@ -48,7 +48,7 @@
 [Project Plan](https://github.com/iiiyu/OhMyStock/projects/1)
 
 
-## 数据顺序
+## 项目部署顺序
 
 搭建以后需要按顺序导入这些数据
 
@@ -68,7 +68,8 @@ php artisan stock:alpha:historical:all
 // 用 iex 来进行日数据更新
 php artisan stock:iex:historical:all
 
-
+// 后台运行
+php artisan stock:alpha:historical:all > ~/ohmystock.out.file 2>&1 &
 ```
 
 Smile every day.
