@@ -42,10 +42,10 @@ class PermissionSeeder extends Seeder
                     ],
                     [
                         'id'          => 9,
-                        'name'        => 'Series',
-                        'slug'        => 'series',
+                        'name'        => 'Historical Prices',
+                        'slug'        => 'historical-prices',
                         'http_method' => 'GET',
-                        'http_path'   => '/series*',
+                        'http_path'   => '/historical-prices*',
                         'parent_id'   => 7,
                         'order'       => 9,
                         'created_at' => $createdAt,

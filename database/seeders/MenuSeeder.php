@@ -51,9 +51,9 @@ class MenuSeeder extends Seeder
                         'id'            => 11,
                         'parent_id'     => 9,
                         'order'         => 11,
-                        'title'         => 'Series',
+                        'title'         => 'Historical Prices',
                         'icon'          => 'fa-american-sign-language-interpreting',
-                        'uri'           => '/series',
+                        'uri'           => '/historical-prices',
                         'created_at'    => $createdAt,
                     ],
                 ]);
