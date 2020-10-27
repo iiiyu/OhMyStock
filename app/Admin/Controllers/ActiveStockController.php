@@ -21,6 +21,14 @@ class ActiveStockController extends AdminController
             // data
             $grid->model()->orderBy('one_day_change', 'desc');
 
+            // quick search
+            $grid->quickSearch('company.symbol')->placeholder('Search Symbol...')->auto(false);
+
+            // TODO: 后面再加入其他
+            // $grid->quickSearch(function ($model, $query) {
+            //     $model->where('company.symbol', 'like', "%{$query}%")->orWhere('company.name', 'like', "%{$query}%");
+            // })->placeholder('Search...');
+
             // 禁用不需要的东西
             $grid->disableCreateButton();
             $grid->disableRowSelector();
@@ -152,7 +160,34 @@ class ActiveStockController extends AdminController
                 });
 
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
+                $filter->between('last_price')->ignore();
+                // $filter->between('one_day_change')->ignore();
+                $filter->whereBetween('one_day_change', function ($q) {
+                    $start = $this->input['start'] ?? null;
+                    $end = $this->input['end'] ?? null;
+
+                    // $q->where('one_day_change', function ($q) use ($start, $end) {
+                    if ($start !== null) {
+                        $q->where('one_day_change', '>=', $start / 100);
+                    }
+
+                    if ($end !== null) {
+                        $q->where('one_day_change', '<=', $end / 100);
+                    }
+                    // });
+                })->ignore();
+
+                $filter->between('vti_one_day_rel')->ignore();
+                $filter->between('vti_five_day_rel')->ignore();
+                $filter->between('vti_one_month_rel')->ignore();
+                $filter->between('price_divergence_cs')->ignore();
+                $filter->between('price_divergence_sm')->ignore();
+                $filter->between('price_divergence_ml')->ignore();
+                $filter->group('last_tradvol', function ($group) {
+                    $group->nlt('>=');
+                    $group->ngt('<=');
+                    $group->equal('=');
+                });
             });
         });
     }

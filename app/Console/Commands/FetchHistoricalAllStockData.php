@@ -43,7 +43,7 @@ class FetchHistoricalAllStockData extends Command
         // Artisan::command('stock:history {symbol}', function ($symbol) {
         //     $this->info("Building {$symbol}!");
         // })->describe('Build the project');
-        Company::where('id', '>', 486)->chunk(20, function ($companies) {
+        Company::chunk(20, function ($companies) {
             $this->info("Fetching");
             foreach ($companies as $company) {
                 //
@@ -58,7 +58,7 @@ class FetchHistoricalAllStockData extends Command
                     'symbol' => $company->symbol
                 ]);
                 $this->info(sprintf('Finish Calculator %s', $company->symbol));
-                sleep(10);
+                sleep(20);
             }
         });
 

@@ -18,15 +18,25 @@ class CompanyController extends AdminController
     protected function grid()
     {
         return Grid::make(new Company(), function (Grid $grid) {
-            $grid->column('id')->sortable();
-            $grid->column('symbol');
+
+            // 禁用不需要的东西
+            $grid->disableCreateButton();
+            $grid->disableRowSelector();
+            $grid->disableActions();
+            $grid->fixColumns(1, 0);
+            $grid->paginate(100);
+
+            $grid->column('symbol')->sortable();
             $grid->column('name');
-            $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
-        
+            $grid->column('market_cap_basic')->sortable();
+            $grid->column('price_earnings_ttm')->sortable();
+            $grid->column('earnings_per_share_basic_ttm')->sortable();
+            $grid->column('number_of_employees')->sortable();
+            $grid->column('sector');
+            $grid->column('is_spx')->bool();
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
             });
         });
     }
@@ -60,7 +70,7 @@ class CompanyController extends AdminController
             $form->display('id');
             $form->text('symbol');
             $form->text('name');
-        
+
             $form->display('created_at');
             $form->display('updated_at');
         });

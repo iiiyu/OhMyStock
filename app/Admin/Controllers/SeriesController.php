@@ -18,6 +18,12 @@ class SeriesController extends AdminController
     protected function grid()
     {
         return Grid::make(new Series(['company']), function (Grid $grid) {
+
+            // 禁用不需要的东西
+            $grid->disableCreateButton();
+            $grid->disableRowSelector();
+            $grid->disableActions();
+
             $grid->column('company.name');
             $grid->column('company.symbol');
             $grid->column('interval');
@@ -30,8 +36,6 @@ class SeriesController extends AdminController
             $grid->column('volume');
             $grid->column('dividend_amount');
             $grid->column('split_coefficient');
-
-
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
