@@ -15,8 +15,13 @@ class Company extends Model
         return $this->hasMany('App\Models\Series');
     }
 
-    public function activeStock()
+    public function activeStocks()
     {
         return $this->hasMany('App\Models\ActiveStock');
+    }
+
+    public function historicalPrices()
+    {
+        return $this->hasMany('App\Models\HistoricalPrice');
     }
 }

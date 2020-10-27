@@ -102,16 +102,6 @@ class FetchHistoricalStockData extends Command
             DB::rollBack();
             throw $exception;
         }
-
-
-        // // dd($data);
-
-        // // dd($tmpArray);
-
-
-        // echo $this->argument('symbol');
-        // echo '\n';
-        // echo $this->option('interval');
         return 0;
     }
 }
