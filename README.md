@@ -45,28 +45,30 @@
 
 ## TODO
 
-- [x] 基本搜索
-- [ ] 替换标普500的数据（目前数据随便找的，不准）
-- [ ] 基础数据能增量添加（目前只做了历史数据初始化）
-- [ ] 基本Cache
-- [ ] 基本队列
-- [ ] 定时任务
-- [ ] 接入新数据源
-- [ ] 下一步产品设计
-
-...
+[Project Plan](https://github.com/iiiyu/OhMyStock/projects/1)
 
 
-## Run Seeder
+## 数据顺序
 
 搭建以后需要按顺序导入这些数据
 
 ``` shell
+php artisan admin:install
 php artisan db:seed --class=RoleSeeder
 php artisan db:seed --class=PermissionSeeder
 php artisan db:seed --class=MenuSeeder
-
 php artisan db:seed --class=CompanySeeder
+
+// 导入 s&p500 公司数据
+php artisan stock:tradingview:spx
+
+// 用 alpha 导入历史数据
+php artisan stock:alpha:historical:all
+
+// 用 iex 来进行日数据更新
+php artisan stock:iex:historical:all
+
+
 ```
 
 Smile every day.
