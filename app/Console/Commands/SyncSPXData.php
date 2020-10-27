@@ -16,7 +16,7 @@ class SyncSPXData extends Command
      *
      * @var string
      */
-    protected $signature = 'stock:spx:sync';
+    protected $signature = 'stock:tradingview:spx';
 
     /**
      * The console command description.
