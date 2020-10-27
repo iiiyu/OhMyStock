@@ -13,7 +13,7 @@ class FetchAllHistoricalPrices extends Command
      *
      * @var string
      */
-    protected $signature = 'stock:historical:all {--range=5d}';
+    protected $signature = 'stock:iex:historical:all {--range=5d}';
 
     /**
      * The console command description.
@@ -49,7 +49,7 @@ class FetchAllHistoricalPrices extends Command
             foreach ($companies as $company) {
                 //
                 $this->info(sprintf('Fetching %s', $company->symbol));
-                $this->call('stock:historical', [
+                $this->call('stock:iex:historical', [
                     'symbol' => $company->symbol,
                     '--range' => $rangeName,
                 ]);

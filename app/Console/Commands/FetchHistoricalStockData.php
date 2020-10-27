@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use App\Models\Company;
-use App\Models\Series;
+use App\Models\HistoricalPrice;
 use Illuminate\Support\Facades\DB;
 
 
@@ -17,7 +17,7 @@ class FetchHistoricalStockData extends Command
      *
      * @var string
      */
-    protected $signature = 'stock:history {symbol} {--interval=daily}';
+    protected $signature = 'stock:alpha:historical {symbol} {--interval=daily}';
 
     /**
      * The console command description.
@@ -75,11 +75,10 @@ class FetchHistoricalStockData extends Command
         foreach ($data as $key => $value) {
 
             $insertData[] = [
-                'company_id' => $company->id, 'closed_at' => $key, 'interval' => 'Daily',
+                'company_id' => $company->id, 'closed_at' => $key,
                 'open' => $value['1. open'], 'high' => $value['2. high'],
                 'low' => $value['3. low'], 'close' => $value['4. close'],
-                'adjusted_close' => $value['5. adjusted close'], 'volume' => $value['6. volume'],
-                'dividend_amount' => $value['7. dividend amount'], 'split_coefficient' => $value['8. split coefficient']
+                'volume' => $value['6. volume'],
             ];
         }
 
@@ -90,10 +89,10 @@ class FetchHistoricalStockData extends Command
             DB::beginTransaction();
 
             foreach ($chunks->toArray() as $chunk) {
-                Series::upsert(
+                HistoricalPrice::upsert(
                     $chunk,
-                    ['company_id', 'closed_at', 'interval'],
-                    ['open', 'high', 'low', 'close', 'adjusted_close', 'volume', 'dividend_amount', 'split_coefficient',]
+                    ['company_id', 'closed_at'],
+                    ['open', 'high', 'low', 'close', 'volume']
                 );
             }
 

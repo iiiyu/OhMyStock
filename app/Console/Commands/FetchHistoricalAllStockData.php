@@ -13,7 +13,7 @@ class FetchHistoricalAllStockData extends Command
      *
      * @var string
      */
-    protected $signature = 'stock:history:all {--interval=daily}';
+    protected $signature = 'stock:alpha:historical:all {--interval=daily}';
 
     /**
      * The console command description.
@@ -48,7 +48,7 @@ class FetchHistoricalAllStockData extends Command
             foreach ($companies as $company) {
                 //
                 $this->info(sprintf('Fetching %s', $company->symbol));
-                $this->call('stock:history', [
+                $this->call('stock:alpha:historical', [
                     'symbol' => $company->symbol
                 ]);
                 $this->info(sprintf('Finish Fetch %s', $company->symbol));

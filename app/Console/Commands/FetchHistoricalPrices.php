@@ -17,7 +17,7 @@ class FetchHistoricalPrices extends Command
      *
      * @var string
      */
-    protected $signature = 'stock:historical {symbol} {--range=2y}';
+    protected $signature = 'stock:iex:historical {symbol} {--range=2y}';
 
     /**
      * The console command description.
