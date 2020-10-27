@@ -1,32 +1,34 @@
 # OhMyStock
 
-雷公的项目想法菜鸟般实现。
+## 起因
 
-雷公在群里号召，老婆想要参与。无奈水平有限。就自己写了给老婆自己玩好了。
+雷公在Slack上提出了要做自己平台的项目想法。
 
-## 原始需求
+我老婆特别兴奋的想要参与。无奈我的水平有限。就自己写了给老婆自己玩好了。
+
+所以这是一个菜鸟般实现。
+
+## 雷公的原始需求
 
 1. 统计方法显示（秒级）
 2. 用户权限管理
 
-## 实现功能
+## 本项目实现功能
 
 1. 统计方法显示 （天级）
 2. 用户权限管理
-
-
-![image.png](https://i.loli.net/2020/10/25/SBYxgePKRQcAH5j.png)
-
-![image.png](https://i.loli.net/2020/10/25/oJIrW1TBwzgAsDd.png)
 
 ## Demo
 
 [Demo 地址](https://stock.ohmyapps.com/admin)
 
-有兴趣的随便看看
+![image.png](https://i.loli.net/2020/10/25/SBYxgePKRQcAH5j.png)
 
+![image.png](https://i.loli.net/2020/10/25/oJIrW1TBwzgAsDd.png)
 
-## 未来项目难点
+欢迎拍砖
+
+## 分析未来项目难点
 
 ### 原始数据来源
 找了一圈，全部都要钱。最后用了免费的 alphavantage.co，但是它也有[限制](https://www.alphavantage.co/premium/)。
@@ -42,6 +44,24 @@
 之前在深圳的时候做过一点点新三版相关的。 当时也想要秒级数据。 然后找过方案。 提供API的厂家要不就很贵，要不就也一般。 最后找到了交易所，然后咨询到了交易所的方案是：找到指定供应商，买一个大锅盖来接受交易所的原始文件。延迟比几乎所有的API要好。而且价格也是最低（有资质的情况下） 但是大锅盖的安装和维护是要自己搞定，综合考虑后最后没买大锅盖。
 
 不知美股的交易所原始方案是什么。是不是也是大锅盖的方案。233.
+
+
+## 寻找免费数据源
+这个项目目前最难的地方就免费数据源的寻找。 Google出来其实挺多 API 提供商的。但是都贵。
+
+找了一大圈，alphavantage 的 API 可以每天免费调用500次，其中有 API 可以拿到某个股票的历史所有数据。
+iexcloud API 一个月可以免费调用50000次的5天历史数据。如果付费，则可以拿到历史数据。
+但是这不想省钱，所以结合起来感觉就可以做到天级的数据更新。
+
+然后是找标普500的公司数据，找了好久好久。第一个版本在 github 上找了个list。结果导入进去好多公司已经退市。 就算wiki上的也不是最新的。 ，结果发现 TradingView 做了前后分离，浏览器右键一下看到 API 巨靠谱。 本来想全部从 TradingView 爬数据，但是用屁股想了5秒肯定有问题。所以只是用它来进行公司数据的初始化
+
+### 免费数据源平台注册一下吧
+
+[注册TradingView](https://www.tradingview.com/gopro/?share_your_love=iiiyu)
+
+[注册iexcloud](https://iexcloud.io/s/8ec8e635)
+
+[注册ALPHA VANTAGE](https://www.alphavantage.co/support/#api-key)
 
 ## TODO
 
@@ -73,7 +93,3 @@ php artisan stock:alpha:historical:all > ~/ohmystock.out.file 2>&1 &
 ```
 
 Smile every day.
-
-[注册TradingView](https://www.tradingview.com/gopro/?share_your_love=iiiyu)
-
-[注册iexcloud](https://iexcloud.io/s/8ec8e635)
