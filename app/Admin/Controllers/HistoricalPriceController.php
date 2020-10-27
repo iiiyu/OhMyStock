@@ -18,6 +18,11 @@ class HistoricalPriceController extends AdminController
     protected function grid()
     {
         return Grid::make(new HistoricalPrice(), function (Grid $grid) {
+            // 禁用不需要的东西
+            $grid->disableCreateButton();
+            $grid->disableRowSelector();
+            $grid->disableActions();
+
             $grid->column('id')->sortable();
             $grid->column('company_id');
             $grid->column('closed_at');
@@ -36,10 +41,9 @@ class HistoricalPriceController extends AdminController
             $grid->column('change_percent');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
             });
         });
     }
@@ -99,7 +103,7 @@ class HistoricalPriceController extends AdminController
             $form->text('change_over_time');
             $form->text('change');
             $form->text('change_percent');
-        
+
             $form->display('created_at');
             $form->display('updated_at');
         });
