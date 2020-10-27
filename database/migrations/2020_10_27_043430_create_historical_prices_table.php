@@ -20,21 +20,21 @@ class CreateHistoricalPricesTable extends Migration
 
             $table->unsignedBigInteger('company_id');
 
-            $table->decimal('open', 11, 4)->comment('Adjusted data for historical dates. Split adjusted only.');
-            $table->decimal('high', 11, 4)->comment('Adjusted data for historical dates. Split adjusted only.');
-            $table->decimal('low', 11, 4)->comment('Adjusted data for historical dates. Split adjusted only.');
-            $table->decimal('close', 11, 4)->comment('Adjusted data for historical dates. Split adjusted only.');
-            $table->bigInteger('volume')->comment('Adjusted data for historical dates. Split adjusted only.');
+            $table->decimal('open', 11, 4)->nullable()->comment('Adjusted data for historical dates. Split adjusted only.');
+            $table->decimal('high', 11, 4)->nullable()->comment('Adjusted data for historical dates. Split adjusted only.');
+            $table->decimal('low', 11, 4)->nullable()->comment('Adjusted data for historical dates. Split adjusted only.');
+            $table->decimal('close', 11, 4)->nullable()->comment('Adjusted data for historical dates. Split adjusted only.');
+            $table->bigInteger('volume')->nullable()->comment('Adjusted data for historical dates. Split adjusted only.');
 
-            $table->decimal('u_open', 11, 4)->comment('Unadjusted data for historical dates.');
-            $table->decimal('u_high', 11, 4)->comment('Unadjusted data for historical dates.');
-            $table->decimal('u_low', 11, 4)->comment('Unadjusted data for historical dates.');
-            $table->decimal('u_close', 11, 4)->comment('Unadjusted data for historical dates.');
-            $table->bigInteger('u_volume')->comment('Unadjusted data for historical dates.');
+            $table->decimal('u_open', 11, 4)->nullable()->comment('Unadjusted data for historical dates.');
+            $table->decimal('u_high', 11, 4)->nullable()->comment('Unadjusted data for historical dates.');
+            $table->decimal('u_low', 11, 4)->nullable()->comment('Unadjusted data for historical dates.');
+            $table->decimal('u_close', 11, 4)->nullable()->comment('Unadjusted data for historical dates.');
+            $table->bigInteger('u_volume')->nullable()->comment('Unadjusted data for historical dates.');
 
-            $table->decimal('change_over_time', 11, 4)->comment('Percent change of each interval relative to first value. Useful for comparing multiple stocks.');
-            $table->decimal('change', 11, 4)->comment('Change from previous trading day.');
-            $table->decimal('change_percent', 11, 2)->comment('Change percent from previous trading day.');
+            $table->decimal('change_over_time', 11, 4)->nullable()->comment('Percent change of each interval relative to first value. Useful for comparing multiple stocks.');
+            $table->decimal('change', 11, 4)->nullable()->comment('Change from previous trading day.');
+            $table->decimal('change_percent', 11, 2)->nullable()->comment('Change percent from previous trading day.');
 
             $table->foreign('company_id')->references('id')->on('companies');
             $table->unique(['company_id', 'closed_at']);
