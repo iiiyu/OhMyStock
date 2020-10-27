@@ -7,6 +7,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
+use App\Models\ActiveStock as ActiveStockModel;
 
 class ActiveStockController extends AdminController
 {
@@ -18,8 +19,10 @@ class ActiveStockController extends AdminController
     protected function grid()
     {
         return Grid::make(new ActiveStock(['company']), function (Grid $grid) {
+            $first = ActiveStockModel::orderBy('calculated_at', 'desc')->first();
+
             // data
-            $grid->model()->orderBy('one_day_change', 'desc');
+            $grid->model()->where('calculated_at', $first->calculated_at)->orderBy('one_day_change', 'desc');
 
             // quick search
             $grid->quickSearch('company.symbol')->placeholder('Search Symbol...')->auto(false);
