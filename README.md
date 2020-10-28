@@ -68,6 +68,13 @@
 
 [注册ALPHA VANTAGE](https://www.alphavantage.co/support/#api-key)
 
+
+2020-10-28 update
+
+数据搞死人啊，之前的方案全部被贫穷限制了。
+
+最后自己用 [yfinance](https://github.com/ranaroussi/yfinance) 搭建了一个简单的API服务转发出来的。 这样我可以随便取数据了。一下感觉省了好多钱。
+
 ## 项目计划
 
 [Project Plan](https://github.com/iiiyu/OhMyStock/projects/1)
