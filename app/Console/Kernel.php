@@ -24,6 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('stock:tradingview:companies spx')->weekdays()->at('15:55');
+        $schedule->command('stock:tradingview:companies ndx')->weekdays()->at('15:58');
         $schedule->command('stock:yf:historical:all')->weekdays()->at('16:05');
     }
 

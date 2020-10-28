@@ -68,8 +68,6 @@ class FetchAllYFinanceHistoricalPrices extends Command
                 FileLog::fetchAll('Finish Calculator ' . $company->symbol);
             }
         });
-
-
         return 0;
     }
 }
