@@ -6,24 +6,25 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use App\Models\Company;
-
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Utils\Log\Facades\FileLog as FileLog;
 
-class SyncSPXData extends Command
+class FetchTradingViewCompaniesData extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'stock:tradingview:spx';
+    protected $signature = 'stock:tradingview:companies {type=spx}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Sync TradingView s&p 500 data';
+    protected $description = 'Fetch TradingView companies data  {type=spx ndx}';
 
     /**
      * Create a new command instance.
@@ -42,8 +43,39 @@ class SyncSPXData extends Command
      */
     public function handle()
     {
-        // 1. 调用API获取数据
 
+        $type = $this->argument('type');
+
+        if (!in_array($type, ['spx', 'ndx'])) {
+            return 0;
+        }
+
+        $isSPX = false;
+
+        $isNDX = false;
+
+        if ('spx' === $type) {
+            $isSPX = true;
+        }
+
+        if ('ndx' === $type) {
+            $isNDX = true;
+        }
+
+        $range = 600;
+        $indexTypeValue = 'SP:SPX';
+
+        if ($isSPX) {
+            $indexTypeValue = 'SP:SPX';
+            $range = 600;
+        }
+
+        if ($isNDX) {
+            $indexTypeValue = 'NASDAQ:NDX';
+            $range = 150;
+        }
+
+        // 1. 调用API获取数据
         $response = Http::withHeaders([
             "Authority" => "scanner.tradingview.com",
             "Pragma" => "no-cache",
@@ -60,7 +92,7 @@ class SyncSPXData extends Command
         ])->post("https://scanner.tradingview.com/america/scan", [
             'range' => [
                 0,
-                600
+                $range
             ],
             'filter' => [
                 [
@@ -80,7 +112,7 @@ class SyncSPXData extends Command
                     [
                         'type' => 'index',
                         'values' => [
-                            'SP:SPX'
+                            $indexTypeValue
                         ]
                     ]
                 ]
@@ -128,36 +160,66 @@ class SyncSPXData extends Command
         foreach ($data as $value) {
 
             $stock_market = explode(':', $value['s'])[0];
-
-            $insertData[] = [
+            $item = [
                 'symbol' => $value['d'][1], 'name' => $value['d'][12], 'stock_market' => $stock_market,
                 'logo_id' => $value['d'][0], 'volume' => $value['d'][6],
                 'market_cap_basic' => $value['d'][7], 'price_earnings_ttm' => $value['d'][8],
                 'earnings_per_share_basic_ttm' => $value['d'][9], 'number_of_employees' => $value['d'][10],
-                'sector' => $value['d'][11], 'is_spx' => true
+                'sector' => $value['d'][11]
             ];
+
+            if ($isSPX) {
+                $item['is_spx'] = true;
+            }
+
+            if ($isNDX) {
+                $item['is_ndx'] = true;
+            }
+
+            $insertData[] = $item;
         }
 
         $collection = collect($insertData);
         $chunks = $collection->chunk(20);
 
         try {
+            $canChangeValues = ['name', 'stock_market', 'logo_id', 'volume', 'market_cap_basic', 'price_earnings_ttm', 'earnings_per_share_basic_ttm', 'number_of_employees', 'sector'];
+
             DB::beginTransaction();
+            if ($isSPX) {
+                Company::query()->update(['is_spx' => false]);
+                $canChangeValues[] = 'is_spx';
+            }
+
+            if ($isNDX) {
+                Company::query()->update(['is_ndx' => false]);
+                $canChangeValues[] = 'is_ndx';
+            }
+
             foreach ($chunks->toArray() as $chunk) {
                 Company::upsert(
                     $chunk,
                     ['symbol'],
-                    ['name', 'stock_market', 'logo_id', 'volume', 'market_cap_basic', 'price_earnings_ttm', 'earnings_per_share_basic_ttm', 'number_of_employees', 'sector', 'is_spx']
+                    $canChangeValues
                 );
             }
             DB::commit();
+            $message = 'Sync S&P 500 Done';
+
+            if ($isSPX) {
+                $message = 'Sync S&P 500 Done';
+            }
+
+            if ($isNDX) {
+                $message = 'Sync NASDAQ 100 Done';
+            }
+
+            FileLog::company($message);
+            Log::channel('discord')->info($message);
         } catch (\Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
-
-
-
         return 0;
     }
 }

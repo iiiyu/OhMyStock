@@ -34,6 +34,7 @@ class CompanyController extends AdminController
             $grid->column('number_of_employees')->sortable();
             $grid->column('sector');
             $grid->column('is_spx')->bool();
+            $grid->column('is_ndx')->bool();
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');

@@ -4,6 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Company;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
+use App\Utils\Log\Facades\FileLog as FileLog;
 
 
 class FetchAllYFinanceHistoricalPrices extends Command
@@ -39,27 +42,30 @@ class FetchAllYFinanceHistoricalPrices extends Command
      */
     public function handle()
     {
-        // $this->info("Building");
-        // Artisan::command('stock:history {symbol}', function ($symbol) {
-        //     $this->info("Building {$symbol}!");
-        // })->describe('Build the project');
         $rangeName = $this->option('range');
+        $now =   Carbon::now()->toDateTimeString();
+        $message = $now . ' Begin Sync';
+        Log::channel('discord')->info($message);
         Company::chunk(20, function ($companies) use ($rangeName) {
             $this->info("Fetching");
+            FileLog::fetchAll("Fetching");
             foreach ($companies as $company) {
                 //
-                $this->info(sprintf('Fetching %s', $company->symbol));
+                $this->info('Fetching ' . $company->symbol);
+                FileLog::fetchAll('Fetching ' . $company->symbol);
                 $this->call('stock:yf:historical', [
                     'symbol' => $company->symbol,
                     '--range' => $rangeName,
                 ]);
-                $this->info(sprintf('Finish Fetch %s', $company->symbol));
-
-                $this->info(sprintf('Calculator %s', $company->symbol));
+                $this->info('Finish Fetch ' . $company->symbol);
+                $this->info('Calculator ' . $company->symbol);
+                FileLog::fetchAll('Finish Fetch ' . $company->symbol);
+                FileLog::fetchAll('Calculator ' . $company->symbol);
                 $this->call('stock:active', [
                     'symbol' => $company->symbol
                 ]);
-                $this->info(sprintf('Finish Calculator %s', $company->symbol));
+                $this->info('Finish Calculator ' . $company->symbol);
+                FileLog::fetchAll('Finish Calculator ' . $company->symbol);
             }
         });
 
