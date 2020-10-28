@@ -163,10 +163,12 @@ class ActiveStockController extends AdminController
                     return $column->getValue() >= 0;
                 })->then(function (Grid\Column $column) {
                     $column->display(function ($last_tradvol) {
+                        $last_tradvol = number_format($last_tradvol);
                         return "<span style='color:green;float:right;'>$last_tradvol</span>";
                     });
                 })->else(function (Grid\Column $column) {
                     $column->display(function ($last_tradvol) {
+                        $last_tradvol = number_format($last_tradvol);
                         return "<span style='color:red;float:right;'>$last_tradvol</span>";
                     });
                 });
