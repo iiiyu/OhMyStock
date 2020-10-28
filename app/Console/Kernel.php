@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('stock:iex:historical:all')->weekdays()->at('16:05');
+        $schedule->command('stock:yf:historical:all')->weekdays()->at('16:05');
     }
 
     /**
