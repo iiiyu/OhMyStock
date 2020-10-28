@@ -14,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->singleton('fileLog', 'App\Utils\Log\FileDailyWriter');
     }
 
     /**

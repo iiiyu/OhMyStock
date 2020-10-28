@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use App\Models\Company;
 use App\Models\HistoricalPrice;
 use Illuminate\Support\Facades\DB;
-
+use App\Utils\Log\Facades\FileLog as FileLog;
 
 class FetchYFinanceHistoricalPrices extends Command
 {
@@ -60,6 +60,7 @@ class FetchYFinanceHistoricalPrices extends Command
         // $base_url = 'https://cloud.iexapis.com/stable/stock/' . Str::lower($this->argument('symbol')) . '/chart/' . $rangeName . '?token=' . $token;
 
         $this->info('Fetch ' . $company->symbol);
+        FileLog::yf('Fetch ' . $company->symbol);
         $response = Http::get($base_url);
 
         $tmpArray = json_decode($response->body(), true);
@@ -106,6 +107,7 @@ class FetchYFinanceHistoricalPrices extends Command
             }
             DB::commit();
             $this->info($company->symbol . ' Update Database Done.');
+            FileLog::yf($company->symbol . ' Update Database Done.');
         } catch (\Exception $exception) {
             DB::rollBack();
             throw $exception;

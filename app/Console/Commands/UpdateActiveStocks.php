@@ -10,6 +10,8 @@ use App\Models\ActiveStock;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use App\Utils\Log\Facades\FileLog as FileLog;
 
 class UpdateActiveStocks extends Command
 {
@@ -129,6 +131,9 @@ class UpdateActiveStocks extends Command
                 ]
             );
             DB::commit();
+            $message = $company->symbol . ' ' . $calculated_at .  'calculated';
+            FileLog::calculate($message);
+            Log::channel('discord')->info($message);
         } catch (\Exception $exception) {
             DB::rollBack();
             throw $exception;
