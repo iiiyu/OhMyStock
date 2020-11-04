@@ -15,12 +15,11 @@ class CompanyTable extends LazyRenderable
 
         return Grid::make(new Company(), function (Grid $grid) {
 
-
             // quick search
             $grid->quickSearch(['symbol', 'name'])->placeholder('Search Symbol...')->auto(false);
 
             // 禁用不需要的东西
-            $grid->paginate(5);
+
             $grid->column('id');
             $grid->column('symbol')->sortable();
             $grid->column('name');
@@ -30,8 +29,7 @@ class CompanyTable extends LazyRenderable
             $grid->column('is_ndx')->bool();
 
             $grid->rowSelector()->titleColumn('symbol');
-
-            $grid->paginate(10);
+            $grid->paginate(5);
             $grid->disableActions();
 
             $grid->filter(function (Grid\Filter $filter) {
