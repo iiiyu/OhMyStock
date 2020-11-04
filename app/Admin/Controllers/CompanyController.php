@@ -19,6 +19,10 @@ class CompanyController extends AdminController
     {
         return Grid::make(new Company(), function (Grid $grid) {
 
+            // return <<<HTML
+            // <div class="card-header clearfix" style="border-bottom: 0;background: transparent;padding: 0">{$content}</div>
+            // HTML;
+
             // 禁用不需要的东西
             $grid->disableCreateButton();
             $grid->disableRowSelector();
@@ -27,7 +31,10 @@ class CompanyController extends AdminController
             $grid->paginate(100);
 
             $grid->column('symbol')->sortable();
-            $grid->column('name');
+            $grid->column('name')->setHeaderAttributes(['style' => 'color:#5b69bc;float: right;'])->display(function ($name) {
+                $color = 'red';
+                return "<div style='background:{$color};' ><span style='color:blue;float:right;text-align:center;'>$name</span></div>";
+            });
             $grid->column('market_cap_basic')->sortable();
             $grid->column('price_earnings_ttm')->sortable();
             $grid->column('earnings_per_share_basic_ttm')->sortable();

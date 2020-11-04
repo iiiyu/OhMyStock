@@ -64,6 +64,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection number_of_employees
      * @property Grid\Column|Collection sector
      * @property Grid\Column|Collection is_spx
+     * @property Grid\Column|Collection is_ndx
      * @property Grid\Column|Collection uuid
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
@@ -85,6 +86,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection change_percent
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
+     * @property Grid\Column|Collection symbols
      * @property Grid\Column|Collection interval
      * @property Grid\Column|Collection adjusted_close
      * @property Grid\Column|Collection dividend_amount
@@ -144,6 +146,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection number_of_employees(string $label = null)
      * @method Grid\Column|Collection sector(string $label = null)
      * @method Grid\Column|Collection is_spx(string $label = null)
+     * @method Grid\Column|Collection is_ndx(string $label = null)
      * @method Grid\Column|Collection uuid(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
@@ -165,6 +168,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection change_percent(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
+     * @method Grid\Column|Collection symbols(string $label = null)
      * @method Grid\Column|Collection interval(string $label = null)
      * @method Grid\Column|Collection adjusted_close(string $label = null)
      * @method Grid\Column|Collection dividend_amount(string $label = null)
@@ -229,6 +233,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection number_of_employees
      * @property Show\Field|Collection sector
      * @property Show\Field|Collection is_spx
+     * @property Show\Field|Collection is_ndx
      * @property Show\Field|Collection uuid
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
@@ -250,6 +255,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection change_percent
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
+     * @property Show\Field|Collection symbols
      * @property Show\Field|Collection interval
      * @property Show\Field|Collection adjusted_close
      * @property Show\Field|Collection dividend_amount
@@ -309,6 +315,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection number_of_employees(string $label = null)
      * @method Show\Field|Collection sector(string $label = null)
      * @method Show\Field|Collection is_spx(string $label = null)
+     * @method Show\Field|Collection is_ndx(string $label = null)
      * @method Show\Field|Collection uuid(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
@@ -330,6 +337,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection change_percent(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
+     * @method Show\Field|Collection symbols(string $label = null)
      * @method Show\Field|Collection interval(string $label = null)
      * @method Show\Field|Collection adjusted_close(string $label = null)
      * @method Show\Field|Collection dividend_amount(string $label = null)

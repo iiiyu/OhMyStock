@@ -22,4 +22,5 @@ Route::group([
     $router->resource('series', 'SeriesController');
     $router->resource('active-stocks', 'ActiveStockController');
     $router->resource('historical-prices', 'HistoricalPriceController');
+    $router->resource('portfolios', 'PortfolioController');
 });
