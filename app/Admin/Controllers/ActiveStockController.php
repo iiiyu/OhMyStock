@@ -21,6 +21,10 @@ class ActiveStockController extends AdminController
         return Grid::make(new ActiveStock(['company']), function (Grid $grid) {
             $first = ActiveStockModel::orderBy('calculated_at', 'desc')->first();
 
+            $grid->header(function ($collection) use ($first) {
+                return "<br/><span>Last Updated: $first->created_at</span>";
+            });
+
             // data
             $grid->model()->where('calculated_at', $first->calculated_at)->orderBy('one_day_change', 'desc');
 
