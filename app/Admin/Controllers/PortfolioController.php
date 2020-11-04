@@ -72,17 +72,6 @@ class PortfolioController extends AdminController
 
                 return $message;
             });
-
-
-            // $show->multipleSelectTable('symbols')
-            //     ->max(10)
-            //     ->title('Companies')
-            //     ->dialogWidth('50%')
-            //     ->from(CompanyTable::make(['id' => $show->getKey()]))
-            //     ->model(Company::class, 'id', 'symbol')
-            //     ->saving(function ($v) {
-            //         return  $v;
-            //     });
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -98,21 +87,8 @@ class PortfolioController extends AdminController
         return Form::make(new Portfolio(), function (Form $form) {
             $form->display('id');
             $form->text('name');
-            // $form->text('symbols')->saveAsJson();
-
-            // $form->multipleSelect('symbols')
-            //     ->options(Company::all()->pluck('symbol', 'id'));
-
-            $form->multipleSelectTable('symbols')
-                ->max(10)
-                ->title('Companies')
-                ->dialogWidth('50%')
-                ->from(CompanyTable::make(['id' => $form->getKey()]))
-                ->model(Company::class, 'id', 'symbol')
-                ->saving(function ($v) {
-                    return  $v;
-                });
-
+            $form->multipleSelect('symbols')
+                ->options(Company::all()->pluck('symbol', 'id'));
             $form->display('created_at');
             $form->display('updated_at');
         });
