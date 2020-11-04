@@ -17,7 +17,7 @@ class CreatePortfoliosTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->comment("Portfolio's Name");
-            $table->json('symbols')->nullable()->comment('Symbols');
+            $table->json('company_ids')->nullable()->comment('company ids');
         });
     }
 

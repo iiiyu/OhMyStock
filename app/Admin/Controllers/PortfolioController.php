@@ -10,6 +10,7 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
 use App\Utils\Log\Facades\FileLog as FileLog;
 use App\Models\Company;
+use App\Admin\Renderable\ActiveStockTable;
 
 class PortfolioController extends AdminController
 {
@@ -27,17 +28,23 @@ class PortfolioController extends AdminController
             // $grid->column('id')->sortable();
             $grid->column('name');
 
-            // $grid->tags('symbols');
-            $grid->column('symbols')->display(function ($symbols) {
+            $grid->column('company_ids')->display(function ($company_ids) {
                 $message = '';
-                $companies = Company::whereIn('id', $symbols)->pluck('symbol')->sort();
+                $companies = Company::whereIn('id', $company_ids)->pluck('symbol')->sort();
 
-                foreach ($companies as $symbol) {
+                foreach ($companies as $company_id) {
                     # code...
-                    $message = $message . $symbol . ' ';
+                    $message = $message . $company_id . ' ';
                 }
                 return "<span>$message</span>";
             });
+
+            $grid->column('content')
+                ->display('Detail')->modal(function ($modal) {
+                    $modal->title('Screener');
+                    // 允许在比包内返回异步加载类的实例
+                    return ActiveStockTable::make(['company_ids' => $this->company_ids]);
+                });
             // $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
 
@@ -61,13 +68,13 @@ class PortfolioController extends AdminController
             $show->field('id');
             $show->field('name');
             // $show->field('symbols');
-            $show->symbols()->as(function ($symbols) {
+            $show->company_ids()->as(function ($company_ids) {
                 $message = '';
-                $companies = Company::whereIn('id', $symbols)->pluck('symbol')->sort();
+                $companies = Company::whereIn('id', $company_ids)->pluck('symbol')->sort();
 
-                foreach ($companies as $symbol) {
+                foreach ($companies as $company_id) {
                     # code...
-                    $message = $message . $symbol . ' ';
+                    $message = $message . $company_id . ' ';
                 }
 
                 return $message;
@@ -87,7 +94,7 @@ class PortfolioController extends AdminController
         return Form::make(new Portfolio(), function (Form $form) {
             $form->display('id');
             $form->text('name');
-            $form->multipleSelect('symbols')
+            $form->multipleSelect('company_ids')
                 ->options(Company::all()->pluck('symbol', 'id'));
             $form->display('created_at');
             $form->display('updated_at');

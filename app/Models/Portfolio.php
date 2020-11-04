@@ -11,6 +11,6 @@ class Portfolio extends Model
     use HasDateTimeFormatter;
 
     protected $casts = [
-        'symbols' => 'array',
+        'company_ids' => 'array',
     ];
 }
