@@ -20,9 +20,9 @@ class ActiveStockController extends AdminController
     {
         return Grid::make(new ActiveStock(['company']), function (Grid $grid) {
             $first = ActiveStockModel::orderBy('calculated_at', 'desc')->first();
-            $last_date = $first->created_at->setTimezone('America/Los_Angeles');
+            $last_date = $first->created_at->setTimezone('America/New_York');
             $grid->header(function ($collection) use ($last_date) {
-                return "<br/><span>Last Updated: $last_date</span>";
+                return "<br/><span>Last Updated: $last_date GMT-5 </span>";
             });
 
             // data
