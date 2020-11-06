@@ -8,9 +8,27 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
 use App\Models\ActiveStock as ActiveStockModel;
+use Dcat\Admin\Layout\Content;
+
 
 class ActiveStockController extends AdminController
 {
+
+
+    public function index(Content $content)
+    {
+        if (request(Grid::IFRAME_QUERY_NAME)) {
+            return $content->full()->body($this->iFrameGrid());
+        }
+        $first = ActiveStockModel::orderBy('calculated_at', 'desc')->first();
+        $last_date = $first->created_at->setTimezone('America/New_York');
+        $description = 'Last Updated: ' . $last_date . ' GMT-5';
+
+        return $content
+            ->title($this->title())
+            ->description($description)
+            ->body($this->grid());
+    }
     /**
      * Make a grid builder.
      *
@@ -18,12 +36,9 @@ class ActiveStockController extends AdminController
      */
     protected function grid()
     {
+
         return Grid::make(new ActiveStock(['company']), function (Grid $grid) {
             $first = ActiveStockModel::orderBy('calculated_at', 'desc')->first();
-            $last_date = $first->created_at->setTimezone('America/New_York');
-            $grid->header(function ($collection) use ($last_date) {
-                return "<br/><span>Last Updated: $last_date GMT-5 </span>";
-            });
 
             // data
             $grid->model()->where('calculated_at', $first->calculated_at)->orderBy('one_day_change', 'desc');

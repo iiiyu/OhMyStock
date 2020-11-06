@@ -44,7 +44,7 @@ return [
      | Set a default avatar for newly created users.
      |
      */
-    'default_avatar' => '@admin/images/default-avatar.jpg',
+    'default_avatar' => '/img/worker.png',
 
     /*
     |--------------------------------------------------------------------------
