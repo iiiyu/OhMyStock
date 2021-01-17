@@ -120,19 +120,6 @@
         // ajax表单提交
         $('#login-form').form({
             validate: true,
-            success: function(data) {
-                if (!data.status) {
-                    Dcat.error(data.message);
-
-                    return false;
-                }
-
-                Dcat.success(data.message);
-
-                location.href = data.redirect;
-
-                return false;
-            }
         });
     });
 </script>
