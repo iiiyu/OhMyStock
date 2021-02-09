@@ -10,18 +10,18 @@ OhMyStock is a medium to low frequency trading analytics platform. We analyze th
 
 ### Development Environment
 
-Docker
-Python
-Laravel
-MangoDB
-MariaDB
+- Docker
+- Python
+- Laravel
+- MangoDB
+- MariaDB
 
 ### Deployment Environment
 
 ## Data source
 
-yfinance
-tradingview
+- yfinance
+- tradingview
 
 ## History Version
 
