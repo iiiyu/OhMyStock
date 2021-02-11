@@ -12,6 +12,7 @@ OhMyStock is a medium to low frequency trading analytics platform. We analyze th
 
 - Docker
 - Python
+- Flask
 - Laravel
 - MangoDB
 - MariaDB
