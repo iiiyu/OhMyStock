@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  python-container-1:
+    build:
+      context: ./data_src/.devcontainer
+      dockerfile: Dockerfile
+      context: '..'
+      args:
+        VARIANT: '3.9'
+    volumes:
+      # Mount the root folder that contains .git
+      - .:/workspace:cached
+  
