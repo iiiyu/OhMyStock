@@ -5,10 +5,10 @@ services:
     build:
       context: ./data_src/.devcontainer
       dockerfile: Dockerfile
-      context: '..'
       args:
         VARIANT: '3.9'
     volumes:
       # Mount the root folder that contains .git
-      - .:/workspace:cached
-  
+      - ./data_src:/workspace:cached
+
+    command: /bin/sh -c "while sleep 1000; do :; done"
