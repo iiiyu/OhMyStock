@@ -8,6 +8,7 @@ services:
       - mysql
       - redis
       - python-container-1
+      - mongo
     volumes:
      - ./web_src:/laravel
      - ~/.ssh:/home/vscoder/.ssh:ro
@@ -70,8 +71,20 @@ services:
     volumes:
       # Mount the root folder that contains .git
       - ./data_src:/workspace:cached
-
+    links:
+      - mongo
     command: /bin/sh -c "while sleep 1000; do :; done"
+  mongo:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: stock_db
+      MONGODB_DATA_DIR: /var/lib/mongo
+      MONDODB_LOG_DIR: /dev/null
+    volumes:
+      - db-data:/var/lib/mongo
 volumes:
   composer:
   vs-code:
