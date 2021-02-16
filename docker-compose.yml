@@ -1,19 +1,19 @@
-version: '3.7'
+version: "3.7"
 services:
   workspace:
     build: ./web_src/.devcontainer/services/workspace
     environment:
       COMPOSER_MEMORY_LIMIT: -1
     links:
-      - mysql
+      - db
       - redis
       - python-container-1
       - mongo
     volumes:
-     - ./web_src:/laravel
-     - ~/.ssh:/home/vscoder/.ssh:ro
-     - composer:/home/vscoder/.composer
-     - vs-code:/home/vscoder/.vscode-server
+      - ./web_src:/laravel
+      - ~/.ssh:/home/vscoder/.ssh:ro
+      - composer:/home/vscoder/.composer
+      - vs-code:/home/vscoder/.vscode-server
   php-fpm:
     build: ./web_src/.devcontainer/services/php-fpm
     volumes:
@@ -31,28 +31,28 @@ services:
   phpredmin:
     image: sasanrose/phpredmin
     environment:
-        - PHPREDMIN_DATABASE_REDIS_0_HOST=redis
+      - PHPREDMIN_DATABASE_REDIS_0_HOST=redis
     ports:
-        - 8080:80
+      - 8080:80
     depends_on:
-        - redis
+      - redis
   redis:
-      image: redis
-  mysql:
-    image: mysql:latest
+    image: redis
+  db:
+    image: mariadb:latest
     environment:
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: default_schema
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test_user_password
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: ohmystock_test_db
     volumes:
-      - db-data:/var/lib/mysql
+      - db-data:/var/lib/mariadb
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     links:
-      - mysql
+      - db
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: db
       PMA_PORT: 3306
     restart: always
     ports:
@@ -67,7 +67,7 @@ services:
       context: ./data_src/.devcontainer
       dockerfile: Dockerfile
       args:
-        VARIANT: '3.9'
+        VARIANT: "3.9"
     volumes:
       # Mount the root folder that contains .git
       - ./data_src:/workspace:cached
