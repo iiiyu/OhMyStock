@@ -7,3 +7,9 @@ Use VS Code open data_src floder, VS Code can tip open container.
 python -m flask run --port 9000 --no-debugger --no-reload
 flask run --port 9000 --debugger --no-reload
 ```
+
+Create requirements.txt
+
+```
+pip freeze >> requirements.txt
+```

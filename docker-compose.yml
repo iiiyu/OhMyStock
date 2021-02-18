@@ -73,6 +73,13 @@ services:
       - ./data_src:/workspace:cached
     links:
       - mongo
+    ports:
+      - 5000:5000
+    environment:
+      MONGODB_DATABASE: stock_db
+      MONGODB_USERNAME: test_mongo_user
+      MONGODB_PASSWORD: test_mongodb_user_password
+      MONGODB_HOSTNAME: mongo
     command: /bin/sh -c "while sleep 1000; do :; done"
   mongo:
     image: mongo:latest
@@ -85,6 +92,8 @@ services:
       MONDODB_LOG_DIR: /dev/null
     volumes:
       - db-data:/var/lib/mongo
+    ports:
+      - 27017:27017
 volumes:
   composer:
   vs-code:
