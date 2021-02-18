@@ -1,11 +1,11 @@
-#-----------------------------------------------------------------------------------------
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License. See LICENSE in the project root for license information.
-#-----------------------------------------------------------------------------------------
+# coding:utf-8
 
 from flask import Flask
+from alive import alive_api
+
 app = Flask(__name__)
 
-@app.route("/")
-def hello():
-    return app.send_static_file("index.html")
+app.register_blueprint(alive_api, url_prefix='/api')
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=9000,debug=True)
