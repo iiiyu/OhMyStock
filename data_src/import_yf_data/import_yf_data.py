@@ -70,7 +70,14 @@ def update_yf_historical(symbol):
         collection_name = symbol + '_historical_collection'
         historical_collection = mongo.db[collection_name]
         company = yf.Ticker(symbol)
-        historical = company.history(period="max",prepost=True)
+        historical = company.history(period="max", auto_adjust = True,)
+        # TODO: Calculator tech index
+        maUsed = [5,20,60,120]
+
+        for ma in maUsed:
+            historical["SMA"+str(ma)]=round(historical["Close"].rolling(window=ma).mean(), 2)
+            historical["EMA"+str(ma)]=round(historical["Close"].ewm(span=ma, adjust=False).mean(), 2)
+
         data = historical.to_dict('index')
         for key in data:
             new_item = data[key]
