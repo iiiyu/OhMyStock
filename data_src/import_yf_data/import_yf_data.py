@@ -6,17 +6,6 @@ from datetime import datetime
 import yfinance as yf
 import re
 
-@import_yf_data_api.route("/test")
-def test():
-    msft = yf.Ticker("AACQU")
-    print(msft.info)
-
-    return {
-        'Code': 0,
-        'Message': "test"
-    }
-
-
 @import_yf_data_api.route("/data/yf/companies")
 def update_yf_companies():
     # search nsdaq company data 
@@ -123,27 +112,6 @@ def update_yf_daily(symbol):
         'Code': 0,
         'Message': "update yf daily " + symbol
     }
-
-
-@import_yf_data_api.route("/test-mongodb")
-def testMongodb():
-    mongo = PyMongo(current_app)
-    collection = mongo.db.test1_collection
-    new_posts = [{"author": "Mike",
-                  "text": "Another post!",
-                  "tags": ["bulk", "insert"],
-                  "date": datetime.datetime(2009, 11, 12, 11, 14)},
-                 {"author": "Eliot",
-                  "title": "MongoDB is fun",
-                  "text": "and pretty easy too!",
-                  "date": datetime.datetime(2009, 11, 10, 10, 45)}]
-
-    collection.insert(new_posts)
-    return {
-        'Code': 0,
-        'Message': "test"
-    }
-
 
 
 def get_yf_data(symbol, period="max", interval="1d"):
